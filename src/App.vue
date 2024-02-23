@@ -5,11 +5,11 @@ import ToDoItem from "./components/ToDoItem.vue";
 <template>
   <div id="app">
     <h1>To-Do List</h1>
-    <ul>
-      <li>
-        <to-do-item></to-do-item>
-      </li>
-    </ul>
+    <form @submit.prevent="Submit">
+      <to-do-item></to-do-item>
+      <button>할 일 추가</button>
+    </form>
+
   </div>
 </template>
 
