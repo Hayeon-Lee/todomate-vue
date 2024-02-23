@@ -1,13 +1,14 @@
 <script setup>
 import ToDoItem from "./components/ToDoItem.vue";
+import NewItem from "./components/NewItem.vue";
 </script>
 
 <template>
   <div id="app">
     <h1>To-Do List</h1>
+    <new-item></new-item>
     <form @submit.prevent="Submit">
       <to-do-item></to-do-item>
-      <button>할 일 추가</button>
     </form>
 
   </div>
