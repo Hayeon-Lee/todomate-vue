@@ -1,9 +1,9 @@
 <template>
   <div>
     <ul>
-      <li class="shadow" v-for="todoItem in toDoItems" v-bind:key="todoItem">
+      <li class="shadow" v-for="(todoItem, index) in toDoItems" v-bind:key="todoItem">
         {{todoItem}}
-        <span class="removeBtn" v-on:click="removeTodo">
+        <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
           <i class="fa-solid fa-trash"></i>
         </span>
       </li>
@@ -20,10 +20,12 @@ export default {
   },
 
   methods: {
-    removeTodo: function() {
+    removeTodo: function(todoItem, index) {
+      localStorage.removeItem(todoItem);
+      this.toDoItems.splice(index, 1);
     }
   },
-  
+
   created: function() { //앱이 생성되자마자 실행되는 hook
     if (localStorage.length > 0) {
       for (var i = 0; i< localStorage.length; i++) {
