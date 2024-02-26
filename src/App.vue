@@ -1,7 +1,7 @@
 <template>
   <ToDoHeader></ToDoHeader>
-  <ToDoInput></ToDoInput>
-  <ToDoList></ToDoList>
+  <ToDoInput v-on:addTodoItem="addOneItem"></ToDoInput> <!--v-on: 하위 컴포넌트에서 발생시킨 이벤트 이름="현재 컴포넌트의 메서드 명"-->
+  <ToDoList v-bind:propsdata="todoItems"></ToDoList> <!--v-bind:내려보낼 props 속성 이름="현재 위치의 컴포넌트 데이터 속성"-->
   <ToDoFooter></ToDoFooter>
 </template>
 
@@ -13,12 +13,39 @@ import ToDoFooter from './components/ToDoFooter.vue';
 
 
 export default {
+  data: function(){
+    return {
+      todoItems: [],
+    }
+  },  
+
+  methods: {
+    addOneItem: function(todoItem) {
+      var obj = {completed: false, item: todoItem};
+      localStorage.setItem(todoItem, JSON.stringify(obj));
+      this.todoItems.push(obj);
+    }
+  },
+  clearInput: function() {
+    this.newTodoItem = '';
+  },
+
   components: {
     'ToDoHeader': ToDoHeader,
     'ToDoInput': ToDoInput,
     'ToDoList': ToDoList,
     'ToDoFooter': ToDoFooter
   },
+
+  created: function() {
+    if (localStorage.length > 0) {
+      for (var i = 0; i<localStorage.length; i++){
+        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        }
+      }
+    }
+  }
 }
 </script>
 
