@@ -23,6 +23,10 @@ export default {
 </script>
 
 <style>
+*{
+  font-family: "IBM Plex Sans KR", sans-serif;
+}
+
 body {
   text-align: center;
   background-color: #F6F6F6;
