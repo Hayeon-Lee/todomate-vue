@@ -20,6 +20,7 @@ export default {
   data: function(){
     return {
       todoItems: [],
+      showModal: false,
     }
   },  
 
