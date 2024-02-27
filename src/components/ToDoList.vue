@@ -3,7 +3,7 @@
     <ul>
       <li class="shadow" v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item">
         <i class="checkBtn fa-solid fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" 
-        v-on:click="toggleComplete(todoItem)"></i>
+        v-on:click="toggleComplete(todoItem, index)"></i>
         <span v-bind:class="{textCompleted: todoItem.completed}" >{{todoItem.item}}</span>
         <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
           <i class="fa-solid fa-trash"></i>
@@ -18,13 +18,10 @@ export default {
   props: ['propsdata'],
   methods: {
     removeTodo: function(todoItem, index) {
-      localStorage.removeItem(todoItem);
-      this.toDoItems.splice(index, 1);
+      this.$emit('removeItem', todoItem, index);
     },
-    toggleComplete: function(todoItem) { //로컬스토리지는 삭제했다가 다시 저장해야 함, 수정 기능이 없음
-      todoItem.completed = !todoItem.completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    toggleComplete: function(todoItem, index) { //로컬스토리지는 삭제했다가 다시 저장해야 함, 수정 기능이 없음
+      this.$emit('toggleItem', todoItem, index);
     }
   },
 }
