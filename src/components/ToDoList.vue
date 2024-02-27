@@ -66,4 +66,18 @@ li {
   color: #b3adad;
 }
 
+/*리스트 아이템 트랜지션 효과*/
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.list-enter-active, .list-leave-active{
+  transition: all 1s;
+}
+
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: tranlateY(30px);
+}
 </style>
