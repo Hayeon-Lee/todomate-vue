@@ -4,25 +4,18 @@
         <div class="modal-mask">
           <div class="modal-wrapper">
             <div class="modal-container">
-
               <div class="modal-header">
+                <!--slot: 특정 컴포넌트의 일부 UI를 재사용할 때 사용한다-->
+                <!--slot 사용 시 todoInput 컴포넌트에서 이 내용을 다시 정의할 수 있다-->
+                <!--모달 헤더-->
                 <slot name="header">
                   default header
                 </slot>
               </div>
-
+              <!--모달 바디-->
               <div class="modal-body">
-                <slot name="body">
+                <slot name="body"> 
                   default body
-                </slot>
-              </div>
-
-              <div class="modal-footer">
-                <slot name="footer">
-                  default footer
-                  <button class="modal-default-button" @click="$emit('close')">
-                    OK
-                  </button>
                 </slot>
               </div>
             </div>
