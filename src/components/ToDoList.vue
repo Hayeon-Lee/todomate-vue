@@ -18,8 +18,7 @@ export default {
   props: ['propsdata'],
   methods: {
     removeTodo: function(todoItem, index) {
-      localStorage.removeItem(todoItem);
-      this.toDoItems.splice(index, 1);
+      this.$emit('removeItem', todoItem, index);
     },
     toggleComplete: function(todoItem) { //로컬스토리지는 삭제했다가 다시 저장해야 함, 수정 기능이 없음
       todoItem.completed = !todoItem.completed;
