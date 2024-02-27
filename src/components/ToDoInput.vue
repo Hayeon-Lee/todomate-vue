@@ -4,14 +4,28 @@
     <span class="addContainer" v-on:click="addTodo">
         <i class="fa-solid fa-plus addBtn"></i>
     </span>
+    <Modal v-if="showModal" @close="showModal = false"> <!--showModal이 True가 되면 이 모달이 보인다-->
+        <template v-slot:header>
+            <h3>
+                안내
+                <i class="fa-solid fa-circle-xmark" @click="showModal = false"></i>
+            </h3>
+        </template>
+        <template v-slot:body>
+            <span>빈 칸은 입력할 수 없습니다</span>
+        </template>
+    </Modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/Modal.vue'
+
 export default {
     data: function() {
         return {
-            newTodoItem:""
+            newTodoItem:"",
+            showModal: false
         }
     },
     methods:{
@@ -20,11 +34,18 @@ export default {
                 this.$emit('addTodoItem', this.newTodoItem);
                 this.clearInput();
             }
+            else {
+                this.showModal = !this.showModal;
+            }
         },  
         clearInput: function() {
             this.newTodoItem = '';
         }
+    },
+    components: {
+        Modal: Modal,
     }
+
 }
 </script>
 
@@ -55,6 +76,10 @@ export default {
     .addBtn {
         color: white;
         vertical-align: middle;
+    }
+
+    .closeModalBtn {
+        color: #42b983;
     }
 
 </style>
