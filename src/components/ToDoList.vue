@@ -17,10 +17,10 @@
 export default {
   props: ['propsdata'],
   methods: {
-    removeTodo: function(todoItem, index) {
+    removeTodo(todoItem, index) {
       this.$emit('removeItem', todoItem, index);
     },
-    toggleComplete: function(todoItem, index) { //로컬스토리지는 삭제했다가 다시 저장해야 함, 수정 기능이 없음
+    toggleComplete(todoItem, index) { //로컬스토리지는 삭제했다가 다시 저장해야 함, 수정 기능이 없음
       this.$emit('toggleItem', todoItem, index);
     }
   },
