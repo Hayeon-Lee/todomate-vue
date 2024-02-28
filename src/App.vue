@@ -49,10 +49,10 @@ export default {
   },
 
   components: {
-    'ToDoHeader': ToDoHeader,
-    'ToDoInput': ToDoInput,
-    'ToDoList': ToDoList,
-    'ToDoFooter': ToDoFooter
+    ToDoHeader,
+    ToDoInput,
+    ToDoList,
+    ToDoFooter
   },
 
   created() {
