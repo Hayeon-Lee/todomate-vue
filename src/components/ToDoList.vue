@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <transition-group name="list" tag="ul">
       <li class="shadow" v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item">
         <i class="checkBtn fa-solid fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" 
         v-on:click="toggleComplete(todoItem, index)"></i>
@@ -9,7 +9,7 @@
           <i class="fa-solid fa-trash"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -67,17 +67,23 @@ li {
 }
 
 /*리스트 아이템 트랜지션 효과*/
-.list-item {
-  display: inline-block;
-  margin-right: 10px;
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
-.list-enter-active, .list-leave-active{
-  transition: all 1s;
-}
-
-.list-enter, .list-leave-to {
+/* 2. declare enter from and leave to state */
+.list-enter-from,
+.list-leave-to {
   opacity: 0;
-  transform: tranlateY(30px);
+  transform: translateY(30px);
+}
+
+/* 3. ensure leaving items are taken out of layout flow so that moving
+      animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+  transition: all 1s;
 }
 </style>
